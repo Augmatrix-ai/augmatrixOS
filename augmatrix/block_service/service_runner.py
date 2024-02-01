@@ -43,9 +43,10 @@ class ServiceRunner(Resource, ABC):
         inputs = decode(inputs_data, self.inputs_dataclass)
 
         # Get various data required to run the program
-        outputs = self.run(inputs,  json.loads(func_args.properties), json.loads(func_args.credentials))
+        outputs = self.run(inputs, json.loads(func_args.properties), json.loads(func_args.credentials))
         outputs_data = []
         if self.block_algo_type == "Splitter":
+            print(outputs)
             outputs_data = [encode(output) for output in outputs]
         else:
             outputs_data = encode(outputs)
