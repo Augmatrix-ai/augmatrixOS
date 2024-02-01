@@ -15,21 +15,21 @@ class AugmatrixDataType:
 
         return obj_dict
 
-@dataclass
-class FunctionArguments(AugmatrixDataType):
-    credentials: Dict[str, str]
-    properties: Dict[str, str]
+# @dataclass
+# class FunctionArguments(AugmatrixDataType):
+#     credentials: Dict[str, str]
+#     properties: Dict[str, str]
 
-    def to_dict(self):
-        # Get all attributes of the object
-        obj_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
+#     def to_dict(self):
+#         # Get all attributes of the object
+#         obj_attributes = [attr for attr in dir(self) if not callable(getattr(self, attr)) and not attr.startswith("__")]
 
-        # Create a dictionary to store the attributes and their values
-        obj_dict = {}
-        for attr in obj_attributes:
-            obj_dict[attr] = getattr(self, attr)
+#         # Create a dictionary to store the attributes and their values
+#         obj_dict = {}
+#         for attr in obj_attributes:
+#             obj_dict[attr] = getattr(self, attr)
 
-        return obj_dict
+#         return obj_dict
 
 def encode(obj):
     # Serialize the object to MessagePack

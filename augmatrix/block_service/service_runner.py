@@ -3,8 +3,10 @@ from twisted.web.resource import Resource
 from twisted.internet import reactor
 from twisted.internet import endpoints
 from abc import ABC, abstractmethod
-from augmatrix.block_service.data_context import encode, decode 
+from augmatrix.block_service.data_context import encode, decode
+from augmatrix.datasets import variable_def_to_dataclass
 import bson
+import json
 
 def class_to_dict(obj):
     # Get all attributes of the object
@@ -20,12 +22,15 @@ def class_to_dict(obj):
 class ServiceRunner(Resource, ABC):
     isLeaf = True
 
-    def __init__(self, inputs_dataclass, outputs_dataclass, func_args_dataclass):
-        self.inputs_dataclass = inputs_dataclass
-        self.outputs_dataclass = outputs_dataclass
-        self.func_args_dataclass = func_args_dataclass
+    def __init__(self):
+        with open("structure.json", "r") as fr:
+            structure = json.loads(fr.read())
+            self.func_args_dataclass = variable_def_to_dataclass(structure['func_args_schema'], 'FunctionArguments')
+            self.inputs_dataclass = variable_def_to_dataclass(structure['inputs_schema'], 'Inputs')
+            self.outputs_dataclass = variable_def_to_dataclass(structure['outputs_schema'], 'Outputs')
 
     def render(self, request):
+
         # Read binary data to MessagePack
         d_data = request.content.read()
         data_msgpack = bson.loads(d_data)
@@ -37,10 +42,7 @@ class ServiceRunner(Resource, ABC):
         inputs = decode(inputs_data, self.inputs_dataclass)
 
         # Get various data required to run the program
-        self.properties = func_args.properties
-        self.credentials = func_args.credentials
-
-        outputs = self.run(**inputs.to_dict())
+        outputs = self.run(inputs,  json.loads(func_args.properties), json.loads(func_args.credentials))
         outputs_data = encode(outputs)
 
         # Write the byte data to the response
