@@ -3,7 +3,7 @@ from twisted.web.resource import Resource
 from twisted.internet import reactor
 from twisted.internet import endpoints
 from abc import ABC, abstractmethod
-from augmatrix.block_service.data_context import encode, decode
+from augmatrix.block_service.data_context import encode, decode, decode_to_object
 from augmatrix.datasets import variable_def_to_dataclass
 import bson
 import json
@@ -34,13 +34,13 @@ class ServiceRunner(Resource, ABC):
 
         # Read binary data to MessagePack
         d_data = request.content.read()
-        data_msgpack = decode(d_data, dict)
+        data_msgpack = decode(d_data)
         func_args_data = data_msgpack["func_args"]
         inputs_data = data_msgpack["inputs"]
 
         # Deserialize func_args and inputs the structure
-        func_args = decode(func_args_data, self.func_args_dataclass)
-        inputs = decode(inputs_data, self.inputs_dataclass)
+        func_args = decode_to_object(func_args_data, self.func_args_dataclass)
+        inputs = decode_to_object(inputs_data, self.inputs_dataclass)
 
         # Get various data required to run the program
         outputs = self.run(inputs, json.loads(func_args.properties), json.loads(func_args.credentials))

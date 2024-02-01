@@ -40,7 +40,7 @@ def encode(obj):
 
     return compressed_data
 
-def decode(data, cls):
+def decode_to_object(data, cls):
     # Decompress the compressed data using zlib
     decompressed_data = zlib.decompress(data)
 
@@ -56,3 +56,9 @@ def decode(data, cls):
 
     # Instantiate the class with the extracted data
     return cls(**obj_data)
+
+def decode(data):
+    decompressed_data = zlib.decompress(data)
+    if isinstance(decompressed_data, bytes):
+        decompressed_data = msgpack.unpackb(decompressed_data, raw=False)
+    return decompressed_data
