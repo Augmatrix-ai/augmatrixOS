@@ -34,7 +34,7 @@ class ServiceRunner(Resource, ABC):
 
         # Read binary data to MessagePack
         d_data = request.content.read()
-        data_msgpack = bson.loads(d_data)
+        data_msgpack = decode(d_data, dict)
         func_args_data = data_msgpack["func_args"]
         inputs_data = data_msgpack["inputs"]
 
@@ -51,7 +51,7 @@ class ServiceRunner(Resource, ABC):
             outputs_data = encode(outputs)
 
         # Write the byte data to the response
-        request.write(bson.dumps(outputs_data))
+        request.write(encode(outputs_data))
 
     @abstractmethod
     def run(self, request):
