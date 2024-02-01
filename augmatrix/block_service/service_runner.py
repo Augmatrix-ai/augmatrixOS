@@ -70,7 +70,3 @@ class ServerManager:
         server_endpoint = endpoints.serverFromString(reactor, endpoint_spec)
         server_endpoint.listen(site)
         reactor.run()
- 
-        server_endpoint = endpoints.serverFromString(reactor, endpoint_spec)
-        server_endpoint.listen(site)
-        reactor.run()
