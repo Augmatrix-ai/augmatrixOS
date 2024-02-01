@@ -29,6 +29,10 @@ class ServiceRunner(Resource, ABC):
             self.inputs_dataclass = variable_def_to_dataclass(structure['inputs_schema'], 'Inputs')
             self.outputs_dataclass = variable_def_to_dataclass(structure['outputs_schema'], 'Outputs')
             self.block_algo_type = structure.get("algoType", "Map")
+        print(self.func_args_dataclass)
+        print(self.inputs_dataclass)
+        print(self.outputs_dataclass)
+        print(self.block_algo_type)
 
     def render(self, request):
 
