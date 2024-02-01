@@ -32,6 +32,7 @@ class ServiceRunner(Resource, ABC):
 
     def render(self, request):
 
+        print("recieved ...")
         # Read binary data to MessagePack
         d_data = request.content.read()
         data_msgpack = decode(d_data)
@@ -52,6 +53,7 @@ class ServiceRunner(Resource, ABC):
 
         # Write the byte data to the response
         request.write(encode(outputs_data))
+        print("responsed ...")
 
     @abstractmethod
     def run(self, request):
