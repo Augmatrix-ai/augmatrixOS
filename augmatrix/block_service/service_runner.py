@@ -28,6 +28,7 @@ class ServiceRunner(Resource, ABC):
             self.func_args_dataclass = variable_def_to_dataclass(structure['func_args_schema'], 'FunctionArguments')
             self.inputs_dataclass = variable_def_to_dataclass(structure['inputs_schema'], 'Inputs')
             self.outputs_dataclass = variable_def_to_dataclass(structure['outputs_schema'], 'Outputs')
+            self.block_algo_type = structure.get("algoType", "Map")
 
     def render(self, request):
 
@@ -43,7 +44,11 @@ class ServiceRunner(Resource, ABC):
 
         # Get various data required to run the program
         outputs = self.run(inputs,  json.loads(func_args.properties), json.loads(func_args.credentials))
-        outputs_data = encode(outputs)
+        outputs_data = []
+        if self.block_algo_type == "Splitter":
+            outputs_data = [encode(output) for output in outputs]
+        else:
+            outputs_data = encode(outputs)
 
         # Write the byte data to the response
         request.write(outputs_data)
