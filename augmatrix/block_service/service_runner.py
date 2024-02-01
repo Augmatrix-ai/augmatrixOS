@@ -22,8 +22,8 @@ def class_to_dict(obj):
 class ServiceRunner(Resource, ABC):
     isLeaf = True
 
-    def __init__(self):
-        with open("structure.json", "r") as fr:
+    def __init__(self, structure_json_path):
+        with open(structure_json_path, "r") as fr:
             structure = json.loads(fr.read())
             self.func_args_dataclass = variable_def_to_dataclass(structure['func_args_schema'], 'FunctionArguments')
             self.inputs_dataclass = variable_def_to_dataclass(structure['inputs_schema'], 'Inputs')
