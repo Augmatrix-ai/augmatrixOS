@@ -5,19 +5,7 @@ from twisted.internet import endpoints
 from abc import ABC, abstractmethod
 from augmatrix.block_service.data_context import encode, decode, decode_to_object
 from augmatrix.datasets import variable_def_to_dataclass
-import bson
 import json
-
-def class_to_dict(obj):
-    # Get all attributes of the object
-    obj_attributes = [attr for attr in dir(obj) if not callable(getattr(obj, attr)) and not attr.startswith("__")]
-
-    # Create a dictionary to store the attributes and their values
-    obj_dict = {}
-    for attr in obj_attributes:
-        obj_dict[attr] = getattr(obj, attr)
-
-    return obj_dict
 
 class ServiceRunner(Resource, ABC):
     isLeaf = True
@@ -64,9 +52,9 @@ class ServerManager:
         self.service_runner = service_runner
 
     def start(self, host="0.0.0.0", port=80):
-        site = server.Site(self.service_runner)
+        print(f"Started service {host}:{port}")
         endpoint_spec = f"tcp:port={port}:interface={host}"
 
         server_endpoint = endpoints.serverFromString(reactor, endpoint_spec)
-        server_endpoint.listen(site)
+        server_endpoint.listen(server.Site(self.service_runner))
         reactor.run()
