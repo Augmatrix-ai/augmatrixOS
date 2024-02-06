@@ -32,9 +32,9 @@ class ClientRunner:
 
         outputs = {}
         if structure['algoType'] == 'Splitter':
-            outputs = [decode_to_object(output, outputs_dataclass) for output in response_data]
+            outputs = [decode_to_object(output, outputs_dataclass).to_dict() for output in response_data]
         else:
-            outputs = decode_to_object(response_data, outputs_dataclass)
+            outputs = decode_to_object(response_data, outputs_dataclass).to_dict()
 
         return outputs
 
