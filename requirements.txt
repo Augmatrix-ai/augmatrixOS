@@ -3,7 +3,7 @@ tqdm
 datasets
 azure-storage-blob
 pyopenssl
-twisted[http2]==17.1.0
+twisted[http2]
 bson
 pyarrow
 service-identity
