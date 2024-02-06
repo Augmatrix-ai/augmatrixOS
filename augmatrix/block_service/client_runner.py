@@ -1,5 +1,5 @@
 import httpx
-from augmatrix.block_service.data_context import encode, decode, decode_to_object
+from .utils import encode, decode, decode_to_object
 from augmatrix.datasets import variable_def_to_dataclass
 import json
 
@@ -9,7 +9,7 @@ class ClientRunner:
 
     def call_function(self, structure_path, func_args, inputs, credentials={}):
         with open(structure_path, "r") as fr_struct:
-            structure = json.loads(fr_struct.read())
+            structure = json.load(fr_struct)
 
             func_args_dataclass = variable_def_to_dataclass(structure['func_args_schema'], 'FunctionArguments')
             inputs_dataclass = variable_def_to_dataclass(structure['inputs_schema'], 'Inputs')

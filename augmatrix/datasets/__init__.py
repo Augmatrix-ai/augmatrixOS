@@ -1,7 +1,7 @@
 from .dataset_loader import AugmatrixLoader
 from typing import Dict, List, Union, Any
 from dataclasses import dataclass
-from augmatrix.block_service.data_context import AugmatrixDataType
+from ..block_service.utils import AugmatrixDataType
 
 DATATYPE_TO_PY_DATATYPE = {
     "Object": Any,

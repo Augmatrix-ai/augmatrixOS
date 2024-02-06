@@ -3,7 +3,7 @@ from twisted.web.resource import Resource
 from twisted.internet import reactor
 from twisted.internet import endpoints
 from abc import ABC, abstractmethod
-from augmatrix.block_service.data_context import encode, decode, decode_to_object
+from .utils import encode, decode, decode_to_object
 from augmatrix.datasets import variable_def_to_dataclass
 import json
 
