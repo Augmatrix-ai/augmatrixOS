@@ -2,7 +2,6 @@ scikit-learn
 tqdm
 datasets
 azure-storage-blob
-hyper[h2]
 pyopenssl
 twisted[http2]==17.1.0
 bson
