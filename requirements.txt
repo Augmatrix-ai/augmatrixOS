@@ -10,3 +10,5 @@ service-identity
 msgpack
 gunicorn
 httpx[http2]==0.26.0
+networkx
+matplotlib
