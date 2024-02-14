@@ -252,7 +252,6 @@ def compile_non_constant_flows(flow):
     """
     graph = convert_flow_to_dependency_graph(flow)
     adjacency_matrix, index_to_task = create_adjacency_matrix(graph)
-    print(index_to_task)
     parallel_exec_seq = get_parallel_exec_sequence(adjacency_matrix)
     # flow["parallel_exec_sequence"] = parallel_exec_seq
     flow["parallel_exec_sequence"] = index_to_exec_mapping(index_to_task, parallel_exec_seq)
@@ -264,7 +263,6 @@ if __name__ == "__main__":
         flow_json = json.load(fr)
 
     compiled_flow = compile_flow(flow_json)
-    print(json.dumps(compiled_flow))
 
     with open("../../sample_flow/compiled_aadnar_n_pan.json", "w") as fw:
         fw.write(json.dumps(compiled_flow))
