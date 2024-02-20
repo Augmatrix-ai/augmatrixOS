@@ -153,6 +153,21 @@ def get_constant_flow(flow: dict, const_block_id: str) -> dict:
 
     return new_flow
 
+def remove_subgraph_overlaps(constant_flows):
+    # Identifying overlaps
+    overlaps = {}
+    for id_a, flow_a in constant_flows.items():
+        for id_b, flow_b in constant_flows.items():
+            if id_a != id_b and set(flow_a["blocks"].keys()).issubset(set(flow_b["blocks"].keys())):
+                overlaps[id_a] = id_b
+
+    # Removing subsets
+    for subset_id, _ in overlaps.items():
+        if subset_id in constant_flows:
+            del constant_flows[subset_id]
+
+    return constant_flows
+
 def compile_flow(flow):
     """
     Compiles the given flow by extracting constants, building parallel execution sequences for constant and non-constant flows.
@@ -165,6 +180,7 @@ def compile_flow(flow):
     """
     flow_copy = copy.deepcopy(flow)
     constant_flow_blocks = extract_constants_from_flow(flow_copy)
+    constant_flow_blocks = remove_subgraph_overlaps(constant_flow_blocks)
     flow_copy["constant_flow_blocks"] = constant_flow_blocks
     compile_constant_flows(flow_copy)
     compile_non_constant_flows(flow_copy)

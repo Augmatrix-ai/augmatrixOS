@@ -1,0 +1,602 @@
+{
+    "blocks": {
+        "12418162717": {
+            "id": "12418162717",
+            "html_data": {
+                "connections": [
+                    {
+                        "input_block_id": "12418162724",
+                        "output_block_id": "12418162717",
+                        "input_class": "_in_image",
+                        "output_class": "_out_images",
+                        "path": " M 263.000030517578 93.0000305175781 L 342.50003814697254 93.0000305175781 342.50003814697254 -99.00001525878902 402.000045776367  -99.00001525878902 M 411.000045776367 -99.00001525878902 L402.000045776367 -104.00001525878902  L402.000045776367 -94.00001525878902Z"
+                    },
+                    {
+                        "input_block_id": "12419113536",
+                        "output_block_id": "12418162717",
+                        "input_class": "_in_image",
+                        "output_class": "_out_images",
+                        "path": " M 263.000030517578 93.0000305175781 L 482.50007629394514 93.0000305175781 482.50007629394514 91.99996948242185 682.0001220703123  91.99996948242185 M 691.0001220703123 91.99996948242185 L682.0001220703123 86.99996948242185  L682.0001220703123 96.99996948242185Z"
+                    }
+                ],
+                "pos_x": 83,
+                "pos_y": 43,
+                "classoverride": "_input",
+                "inputs": {},
+                "outputs": {
+                    "_out_images": {
+                        "type_text": "Image",
+                        "title": "Images",
+                        "is_from_dataset": true,
+                        "vis_type": 0,
+                        "type": 1
+                    }
+                }
+            },
+            "typenode": false,
+            "status_config_color": 1,
+            "block_name_uid": "input",
+            "running_block_status": {
+                "job_status": 3,
+                "block_progress": 100
+            },
+            "algoType": 0,
+            "title_text": "Input",
+            "props_modal_id": "props-node-12418162717",
+            "block_properties": {
+                "dataset": {
+                    "dataset_name": "sample image",
+                    "dataset_id": 1707389764,
+                    "datset_upload_status": 1,
+                    "dataset_schema": {
+                        "images": {
+                            "type_text": "Image",
+                            "title": "Images",
+                            "is_from_dataset": true,
+                            "vis_type": 0
+                        }
+                    },
+                    "object_store_type": "minio",
+                    "object_store_name": "dev minio",
+                    "object_store_id": 2,
+                    "bucket_name": "madanram"
+                }
+            },
+            "childrens": {
+                "images": {
+                    "type_text": "Image",
+                    "title": "Images",
+                    "is_from_dataset": true,
+                    "vis_type": 0,
+                    "type": 1,
+                    "connections": [
+                        {
+                            "output_to_block_id": "12418162724",
+                            "output_to_input_id": "image",
+                            "is_constant": false
+                        },
+                        {
+                            "output_to_block_id": "12419113536",
+                            "output_to_input_id": "image",
+                            "is_constant": false
+                        }
+                    ]
+                }
+            },
+            "parents": {},
+            "constant_type": "N/A"
+        },
+        "12418162724": {
+            "id": "12418162724",
+            "html_data": {
+                "connections": [
+                    {
+                        "input_block_id": "12419113536",
+                        "output_block_id": "12418162724",
+                        "input_class": "_in_ocr_json",
+                        "output_class": "_out_ocr_json",
+                        "path": " M 601.9999694824216 -112.00000762939449 L 652.000045776367 -112.00000762939449 652.000045776367 118.00003051757808 682.0001220703123  118.00003051757808 M 691.0001220703123 118.00003051757808 L682.0001220703123 113.00003051757808  L682.0001220703123 123.00003051757808Z"
+                    }
+                ],
+                "pos_x": 422,
+                "pos_y": -160,
+                "classoverride": "_ocr",
+                "inputs": {
+                    "_in_image": {
+                        "title": "Image",
+                        "type": 1,
+                        "is_required": true,
+                        "type_text": "Image"
+                    }
+                },
+                "outputs": {
+                    "_out_ocr_json": {
+                        "title": "OCR Json",
+                        "type": 2,
+                        "vis_type": 1,
+                        "type_text": "JSON"
+                    },
+                    "_out_raw_text": {
+                        "title": "OCR Text",
+                        "type": 3,
+                        "vis_type": 4,
+                        "type_text": "Text"
+                    }
+                }
+            },
+            "typenode": false,
+            "status_config_color": 1,
+            "block_name_uid": "ocr",
+            "running_block_status": {
+                "job_status": 3,
+                "block_progress": 100
+            },
+            "algoType": 4,
+            "title_text": "OCR",
+            "props_modal_id": "props-node-12418162724",
+            "block_properties": {
+                "selected_ocr_type": {
+                    "ocr_name": "google OCR",
+                    "ocr_id": "google_ocr"
+                },
+                "language_hints": [
+                    ""
+                ]
+            },
+            "childrens": {
+                "ocr_json": {
+                    "title": "OCR Json",
+                    "type": 2,
+                    "vis_type": 1,
+                    "type_text": "JSON",
+                    "connections": [
+                        {
+                            "output_to_block_id": "12419113536",
+                            "output_to_input_id": "ocr_json",
+                            "is_constant": false
+                        }
+                    ]
+                },
+                "raw_text": {
+                    "title": "OCR Text",
+                    "type": 3,
+                    "vis_type": 4,
+                    "type_text": "Text",
+                    "connections": []
+                }
+            },
+            "parents": {
+                "image": {
+                    "title": "Image",
+                    "type": 1,
+                    "is_required": true,
+                    "type_text": "Image",
+                    "connections": [
+                        {
+                            "input_from_block_id": "12418162717",
+                            "input_from_output_id": "images",
+                            "is_constant": false
+                        }
+                    ]
+                }
+            },
+            "constant_type": "N/A"
+        },
+        "12419113536": {
+            "id": "12419113536",
+            "html_data": {
+                "connections": [
+                    {
+                        "input_block_id": "124114165446",
+                        "output_block_id": "12419113536",
+                        "input_class": "_in_ocr_json",
+                        "output_class": "_out_grid_to_ocridx_index",
+                        "path": " M 881.9999999999998 104.99999999999997 L 1042.4999999999998 104.99999999999997 1042.4999999999998 389.9999999999999 1182.9999999999998  389.9999999999999 M 1191.9999999999998 389.9999999999999 L1182.9999999999998 384.9999999999999  L1182.9999999999998 394.9999999999999Z"
+                    }
+                ],
+                "pos_x": 702,
+                "pos_y": 33,
+                "classoverride": "_ocr_text_formatter",
+                "inputs": {
+                    "_in_image": {
+                        "title": "Image",
+                        "type": 1,
+                        "is_required": true,
+                        "type_text": "Image"
+                    },
+                    "_in_ocr_json": {
+                        "title": "OCR JSON",
+                        "type": 2,
+                        "is_required": true,
+                        "type_text": "JSON"
+                    }
+                },
+                "outputs": {
+                    "_out_raw_text": {
+                        "title": "Layout aware Text",
+                        "type": 3,
+                        "vis_type": 4,
+                        "type_text": "Text"
+                    },
+                    "_out_grid_to_ocridx_index": {
+                        "title": "Grid to OCR index JSON",
+                        "type": 2,
+                        "vis_type": 5,
+                        "type_text": "JSON"
+                    },
+                    "_out_grid_to_line_index": {
+                        "title": "Grid to line character",
+                        "type": 2,
+                        "vis_type": 5,
+                        "type_text": "JSON"
+                    }
+                }
+            },
+            "typenode": false,
+            "status_config_color": 1,
+            "block_name_uid": "ocr_text_formatter",
+            "running_block_status": {
+                "job_status": 3,
+                "block_progress": 100
+            },
+            "algoType": 4,
+            "title_text": "OCR Text Formatter",
+            "props_modal_id": "props-node-12419113536",
+            "block_properties": {},
+            "childrens": {
+                "raw_text": {
+                    "title": "Layout aware Text",
+                    "type": 3,
+                    "vis_type": 4,
+                    "type_text": "Text",
+                    "connections": []
+                },
+                "grid_to_ocridx_index": {
+                    "title": "Grid to OCR index JSON",
+                    "type": 2,
+                    "vis_type": 5,
+                    "type_text": "JSON",
+                    "connections": [
+                        {
+                            "output_to_block_id": "124114165446",
+                            "output_to_input_id": "ocr_json",
+                            "is_constant": false
+                        }
+                    ]
+                },
+                "grid_to_line_index": {
+                    "title": "Grid to line character",
+                    "type": 2,
+                    "vis_type": 5,
+                    "type_text": "JSON",
+                    "connections": []
+                }
+            },
+            "parents": {
+                "image": {
+                    "title": "Image",
+                    "type": 1,
+                    "is_required": true,
+                    "type_text": "Image",
+                    "connections": [
+                        {
+                            "input_from_block_id": "12418162717",
+                            "input_from_output_id": "images",
+                            "is_constant": false
+                        }
+                    ]
+                },
+                "ocr_json": {
+                    "title": "OCR JSON",
+                    "type": 2,
+                    "is_required": true,
+                    "type_text": "JSON",
+                    "connections": [
+                        {
+                            "input_from_block_id": "12418162724",
+                            "input_from_output_id": "ocr_json",
+                            "is_constant": false
+                        }
+                    ]
+                }
+            },
+            "constant_type": "N/A"
+        },
+        "124114165446": {
+            "id": "124114165446",
+            "html_data": {
+                "connections": [],
+                "pos_x": 1203,
+                "pos_y": 320,
+                "classoverride": "_alignment",
+                "inputs": {
+                    "_in_image": {
+                        "title": "Image",
+                        "type": 1,
+                        "is_required": true,
+                        "type_text": "Image"
+                    },
+                    "_in_ocr_json": {
+                        "title": "OCR Json",
+                        "type": 2,
+                        "is_required": true,
+                        "type_text": "JSON"
+                    },
+                    "_in_ref_image": {
+                        "title": "Refrence Image",
+                        "type": 1,
+                        "is_required": true,
+                        "type_text": "Image"
+                    },
+                    "_in_ref_ocr_json": {
+                        "title": "Refrence OCR Json",
+                        "type": 2,
+                        "is_required": true,
+                        "type_text": "JSON"
+                    }
+                },
+                "outputs": {
+                    "_out_image": {
+                        "title": "Image",
+                        "type": 1,
+                        "vis_type": 0,
+                        "type_text": "Image"
+                    },
+                    "_out_ocr_json": {
+                        "title": "OCR Json",
+                        "type": 2,
+                        "vis_type": 1,
+                        "type_text": "JSON"
+                    }
+                }
+            },
+            "typenode": false,
+            "status_config_color": 1,
+            "block_name_uid": "alignment",
+            "running_block_status": {
+                "job_status": 2,
+                "block_progress": 100
+            },
+            "algoType": 4,
+            "title_text": "Alignment",
+            "props_modal_id": "props-node-124114165446",
+            "childrens": {
+                "image": {
+                    "title": "Image",
+                    "type": 1,
+                    "vis_type": 0,
+                    "type_text": "Image",
+                    "connections": []
+                },
+                "ocr_json": {
+                    "title": "OCR Json",
+                    "type": 2,
+                    "vis_type": 1,
+                    "type_text": "JSON",
+                    "connections": []
+                }
+            },
+            "parents": {
+                "image": {
+                    "title": "Image",
+                    "type": 1,
+                    "is_required": true,
+                    "type_text": "Image",
+                    "connections": [
+                        {
+                            "input_from_block_id": "124119183357",
+                            "input_from_output_id": "ref_image",
+                            "is_constant": true
+                        }
+                    ]
+                },
+                "ocr_json": {
+                    "title": "OCR Json",
+                    "type": 2,
+                    "is_required": true,
+                    "type_text": "JSON",
+                    "connections": [
+                        {
+                            "input_from_block_id": "12419113536",
+                            "input_from_output_id": "grid_to_ocridx_index",
+                            "is_constant": false
+                        }
+                    ]
+                },
+                "ref_image": {
+                    "title": "Refrence Image",
+                    "type": 1,
+                    "is_required": true,
+                    "type_text": "Image",
+                    "connections": [
+                        {
+                            "input_from_block_id": "124119165735",
+                            "input_from_output_id": "ref_image",
+                            "is_constant": true
+                        }
+                    ]
+                },
+                "ref_ocr_json": {
+                    "title": "Refrence OCR Json",
+                    "type": 2,
+                    "is_required": true,
+                    "type_text": "JSON",
+                    "connections": []
+                }
+            },
+            "constant_type": "MIXED"
+        }
+    },
+    "dataset_info": {
+        "dataset_name": "sample image",
+        "dataset_id": 1707389764,
+        "datset_upload_status": 1,
+        "dataset_schema": {
+            "images": {
+                "type_text": "Image",
+                "title": "Images",
+                "is_from_dataset": true,
+                "vis_type": 0
+            }
+        },
+        "object_store_type": "minio",
+        "object_store_name": "dev minio",
+        "object_store_id": 2,
+        "bucket_name": "madanram"
+    },
+    "is_running": false,
+    "constant_flow_blocks": {
+        "124119183357": {
+            "blocks": {
+                "124119183357": {
+                    "id": "124119183357",
+                    "html_data": {
+                        "connections": [
+                            {
+                                "input_block_id": "124114165446",
+                                "output_block_id": "124119183357",
+                                "input_class": "_in_image",
+                                "output_class": "_out_ref_image",
+                                "path": " M 559.9999999999999 362.99999999999994 L 881.4999999999998 362.99999999999994 881.4999999999998 363.99999999999994 1182.9999999999998  363.99999999999994 M 1191.9999999999998 363.99999999999994 L1182.9999999999998 358.99999999999994  L1182.9999999999998 368.99999999999994Z"
+                            }
+                        ],
+                        "pos_x": 380,
+                        "pos_y": 311,
+                        "classoverride": "_constant",
+                        "inputs": {},
+                        "outputs": {
+                            "_out_ref_image": {
+                                "title": "Refrence Image",
+                                "type": 1,
+                                "vis_type": 0,
+                                "type_text": "Image"
+                            }
+                        }
+                    },
+                    "typenode": false,
+                    "status_config_color": 1,
+                    "block_name_uid": "constant",
+                    "running_block_status": {
+                        "block_progress": 0,
+                        "job_status": 0
+                    },
+                    "algoType": 1,
+                    "title_text": "Constant",
+                    "props_modal_id": "props-node-124119183357",
+                    "block_properties": {
+                        "ref_image": {
+                            "type_text": "Image",
+                            "type": 1,
+                            "title": "Refrence Image"
+                        }
+                    },
+                    "childrens": {
+                        "ref_image": {
+                            "title": "Refrence Image",
+                            "type": 1,
+                            "vis_type": 0,
+                            "type_text": "Image",
+                            "connections": [
+                                {
+                                    "output_to_block_id": "124114165446",
+                                    "output_to_input_id": "image",
+                                    "is_constant": true
+                                }
+                            ]
+                        }
+                    },
+                    "parents": {},
+                    "constant_type": "CONST"
+                }
+            },
+            "parallel_exec_sequence": [
+                [
+                    "124119183357"
+                ]
+            ]
+        },
+        "124119165735": {
+            "blocks": {
+                "124119165735": {
+                    "id": "124119165735",
+                    "html_data": {
+                        "connections": [
+                            {
+                                "input_block_id": "124114165446",
+                                "output_block_id": "124119165735",
+                                "input_class": "_in_ref_image",
+                                "output_class": "_out_ref_image",
+                                "path": " M 565.9999999999999 539.9999999999999 L 884.4999999999998 539.9999999999999 884.4999999999998 415.9999999999999 1182.9999999999998  415.9999999999999 M 1191.9999999999998 415.9999999999999 L1182.9999999999998 410.9999999999999  L1182.9999999999998 420.9999999999999Z"
+                            }
+                        ],
+                        "pos_x": 386,
+                        "pos_y": 490,
+                        "classoverride": "_constant",
+                        "inputs": {},
+                        "outputs": {
+                            "_out_ref_image": {
+                                "title": "Refrence Image",
+                                "type": 1,
+                                "vis_type": 0,
+                                "type_text": "Image"
+                            }
+                        }
+                    },
+                    "typenode": false,
+                    "status_config_color": 1,
+                    "block_name_uid": "constant",
+                    "running_block_status": {
+                        "job_status": 3,
+                        "block_progress": 100
+                    },
+                    "algoType": 1,
+                    "title_text": "Constant",
+                    "props_modal_id": "props-node-124119165735",
+                    "block_properties": {
+                        "ref_image": {
+                            "type_text": "Image",
+                            "type": 1,
+                            "title": "Refrence Image"
+                        }
+                    },
+                    "childrens": {
+                        "ref_image": {
+                            "title": "Refrence Image",
+                            "type": 1,
+                            "vis_type": 0,
+                            "type_text": "Image",
+                            "connections": [
+                                {
+                                    "output_to_block_id": "124114165446",
+                                    "output_to_input_id": "ref_image",
+                                    "is_constant": true
+                                }
+                            ]
+                        }
+                    },
+                    "parents": {},
+                    "constant_type": "CONST"
+                }
+            },
+            "parallel_exec_sequence": [
+                [
+                    "124119165735"
+                ]
+            ]
+        }
+    },
+    "parallel_exec_sequence": [
+        [
+            "12418162717"
+        ],
+        [
+            "12418162724"
+        ],
+        [
+            "12419113536"
+        ],
+        [
+            "124114165446"
+        ]
+    ]
+}
